@@ -2,10 +2,12 @@ import Service, { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { scheduleOnce, next } from '@ember/runloop';
+import { guidFor } from '@ember/object/internals';
 
 export default class ScrollService extends Service {
   @service router;
 
+  guid = `${guidFor(this)}-scroll-on-click-target`;
   doScroll = true;
   @tracked isLoading = false;
 
@@ -46,10 +48,7 @@ export default class ScrollService extends Service {
   @action
   scrollUp() {
     if (this.doScroll) {
-      // TODO: replace with ember-a11y-pushstate kind of implementation
-      if (window.scrollTo) {
-        window.scrollTo(0, 0);
-      }
+      document.getElementById(this.guid).focus();
     }
 
     this.doScroll = true;
