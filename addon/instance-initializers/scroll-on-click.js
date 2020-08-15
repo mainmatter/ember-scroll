@@ -1,5 +1,5 @@
 export function initialize(appInstance) {
-  if (document) {
+  if (window && window.document) {
     const router = appInstance.lookup('service:router');
     const scroll = appInstance.lookup('service:scroll');
 
