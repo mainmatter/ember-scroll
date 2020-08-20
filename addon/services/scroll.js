@@ -11,6 +11,8 @@ export default class ScrollService extends Service {
   doScroll = true;
   @tracked isLoading = false;
 
+  _hasSetupElement = false;
+
   constructor() {
     super(...arguments);
 
@@ -48,10 +50,28 @@ export default class ScrollService extends Service {
   @action
   scrollUp() {
     if (this.doScroll) {
+      this._setupElement();
       document.getElementById(this.guid).focus();
     }
 
     this.doScroll = true;
     this.isLoading = false;
+  }
+
+  _setupElement() {
+    if(this._hasSetupElement) {
+      return;
+    }
+
+    const element = document.createElement('div');
+    const text = document.createTextNode('The page navigation is complete. You may now navigate the page content as you wish.');
+    element.append(text);
+    element.setAttribute('id', this.guid);
+    element.setAttribute('class', 'ember-scroll-on-click-navigation-message');
+    element.setAttribute('tabindex', -1);
+    element.setAttribute('role', 'text');
+    document.body.prepend(element);
+
+    this._hasSetupElement = true;
   }
 }
