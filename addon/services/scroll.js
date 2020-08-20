@@ -69,6 +69,7 @@ export default class ScrollService extends Service {
     element.setAttribute('id', this.guid);
     element.setAttribute('class', 'ember-scroll-on-click-navigation-message');
     element.setAttribute('tabindex', -1);
+    element.setAttribute('role', 'text');
     document.body.prepend(element);
 
     this._hasSetupElement = true;
