@@ -7,7 +7,7 @@ import { guidFor } from '@ember/object/internals';
 export default class ScrollService extends Service {
   @service router;
 
-  guid = `${guidFor(this)}-scroll-on-click-target`;
+  guid = `${guidFor(this)}-scroll-target`;
   doScroll = true;
   @tracked isLoading = false;
 
@@ -67,7 +67,7 @@ export default class ScrollService extends Service {
     const text = document.createTextNode('The page navigation is complete. You may now navigate the page content as you wish.');
     element.append(text);
     element.setAttribute('id', this.guid);
-    element.setAttribute('class', 'ember-scroll-on-click-navigation-message');
+    element.setAttribute('class', 'ember-scroll-navigation-message');
     element.setAttribute('tabindex', -1);
     element.setAttribute('role', 'text');
     document.body.prepend(element);
