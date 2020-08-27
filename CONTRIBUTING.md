@@ -3,7 +3,7 @@
 ## Installation
 
 * `git clone <repository-url>`
-* `cd ember-scroll-on-click`
+* `cd ember-scroll`
 * `npm install`
 
 ## Linting

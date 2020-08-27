@@ -1,4 +1,4 @@
-ember-scroll-on-click
+ember-scroll
 ==============================================================================
 
 [Short description of the addon.]
@@ -16,7 +16,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install ember-scroll-on-click
+ember install ember-scroll
 ```
 
 
