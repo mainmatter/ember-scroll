@@ -1,13 +1,14 @@
 {
   "name": "ember-scroll",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "A sensible default implementation of scrolling for Ember apps, aiming to mimic static site behaviour.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "scroll"
   ],
-  "repository": "",
+  "repository": "https://github.com/simplabs/ember-scroll",
   "license": "MIT",
-  "author": "",
+  "author": "Nick Schot <nickschot@simplabs.com>",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -20,7 +21,7 @@
     "start": "ember serve",
     "test": "npm-run-all lint:* test:*",
     "test:ember": "ember test",
-    "test:ember-compatibility": "ember try:each"
+    "ember-compatibility-test": "ember try:each"
   },
   "dependencies": {
     "ember-cli-babel": "^7.21.0",
