@@ -1,5 +1,4 @@
 import Service, { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { scheduleOnce, next } from '@ember/runloop';
 import { guidFor } from '@ember/object/internals';
@@ -9,7 +8,6 @@ export default class ScrollService extends Service {
 
   guid = `${guidFor(this)}-scroll-target`;
   doScroll = true;
-  @tracked isLoading = false;
 
   _hasSetupElement = false;
 
@@ -29,7 +27,6 @@ export default class ScrollService extends Service {
   @action
   routeWillChange() {
     this.doScroll = true;
-    this.isLoading = true;
   }
 
   @action
@@ -37,7 +34,6 @@ export default class ScrollService extends Service {
     // don't mess with the scroll there is no from in the route transition (meaning its the initial load)
     if (!transition.from) {
       this.doScroll = true;
-      this.isLoading = false;
       return;
     }
 
@@ -55,7 +51,6 @@ export default class ScrollService extends Service {
     }
 
     this.doScroll = true;
-    this.isLoading = false;
   }
 
   _setupElement() {
