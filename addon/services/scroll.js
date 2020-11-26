@@ -2,6 +2,7 @@ import Service, { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { scheduleOnce, next } from '@ember/runloop';
 import { guidFor } from '@ember/object/internals';
+import { getOwner } from '@ember/application';
 
 export default class ScrollService extends Service {
   @service router;
@@ -65,8 +66,24 @@ export default class ScrollService extends Service {
     element.setAttribute('class', 'ember-scroll-navigation-message');
     element.setAttribute('tabindex', -1);
     element.setAttribute('role', 'text');
-    document.body.prepend(element);
+
+    const config = getOwner(this).resolveRegistration('config:environment');
+
+    // attach to the body unless a rootElement is configured for the app
+    const rootElement = config.APP.rootElement
+      ? document.querySelector(config.APP.rootElement)
+      : document.body;
+    rootElement.prepend(element);
 
     this._hasSetupElement = true;
+  }
+
+  willDestroy() {
+    const element = document.getElementById(this.guid);
+    if (element) {
+      element.remove();
+    }
+
+    super.willDestroy();
   }
 }

@@ -17,8 +17,8 @@ module('Acceptance | scroll', function(hooks) {
 
     assert.dom('.ember-scroll-navigation-message', document).exists();
 
-    // check if we're the first element in the body
-    assert.dom('body > *:first-child', document).hasClass('ember-scroll-navigation-message');
+    // check if we're the first element in the rootElement
+    assert.dom('#ember-testing > *:first-child', document).hasClass('ember-scroll-navigation-message');
 
     assert.dom('.ember-scroll-navigation-message', document).isFocused();
     assert.dom('.ember-scroll-navigation-message', document).hasText('The page navigation is complete. You may now navigate the page content as you wish.');
