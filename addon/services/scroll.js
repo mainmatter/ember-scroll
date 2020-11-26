@@ -15,13 +15,16 @@ export default class ScrollService extends Service {
     super(...arguments);
 
     if (window.addEventListener) {
-      window.addEventListener('popstate', () => {
-        // we want the popstate event to be handled in between routeWillChange and routeDidChange
-        next(() => {
-          this.doScroll = false;
-        });
-      });
+      window.addEventListener('popstate', this.handlePopstate);
     }
+  }
+
+  @action
+  handlePopstate() {
+    // we want the popstate event to be handled in between routeWillChange and routeDidChange
+    next(() => {
+      this.doScroll = false;
+    });
   }
 
   @action
@@ -71,6 +74,10 @@ export default class ScrollService extends Service {
   }
 
   willDestroy() {
+    if (window.removeEventListener) {
+      window.removeEventListener('popstate', this.handlePopstate);
+    }
+
     const element = document.getElementById(this.guid);
     if (element) {
       element.remove();
