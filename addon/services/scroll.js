@@ -77,4 +77,13 @@ export default class ScrollService extends Service {
 
     this._hasSetupElement = true;
   }
+
+  willDestroy() {
+    const element = document.getElementById(this.guid);
+    if (element) {
+      element.remove();
+    }
+
+    super.willDestroy();
+  }
 }
