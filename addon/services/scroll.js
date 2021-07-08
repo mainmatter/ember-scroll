@@ -51,6 +51,7 @@ export default class ScrollService extends Service {
     if (this.doScroll) {
       this._setupElement();
       document.getElementById(this.guid).focus();
+      window.scrollTo(0, 0);
     }
 
     this.doScroll = true;
