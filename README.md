@@ -39,4 +39,4 @@ See the [Contributing](CONTRIBUTING.md) guide for details.
 License
 ------------------------------------------------------------------------------
 
-ember-scroll is developed by and &copy; [simplabs GmbH](http://simplabs.com) and contributors. It is released under the [MIT License](LICENSE).
+ember-scroll is developed by and &copy; [Mainmatter GmbH](http://mainmatter.com) and contributors. It is released under the [MIT License](LICENSE).
