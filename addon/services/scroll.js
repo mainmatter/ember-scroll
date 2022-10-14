@@ -2,9 +2,11 @@ import Service, { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { scheduleOnce, next } from '@ember/runloop';
 import { guidFor } from '@ember/object/internals';
+import { getOwner } from '@ember/application';
 
 export default class ScrollService extends Service {
   @service router;
+  intl = getOwner(this).lookup('service:intl');
 
   guid = `${guidFor(this)}-scroll-target`;
   doScroll = true;
@@ -62,8 +64,13 @@ export default class ScrollService extends Service {
       return;
     }
 
+    let navigationMessage = 'The page navigation is complete. You may now navigate the page content as you wish.';
+    if (this.intl && this.intl.exists('emberScroll.navigationMessage')) {
+      navigationMessage = this.intl.t('emberScroll.navigationMessage');
+    }
+
     const element = document.createElement('div');
-    const text = document.createTextNode('The page navigation is complete. You may now navigate the page content as you wish.');
+    const text = document.createTextNode(navigationMessage);
     element.append(text);
     element.setAttribute('id', this.guid);
     element.setAttribute('class', 'ember-scroll-navigation-message');
